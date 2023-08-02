@@ -492,8 +492,10 @@ class pdf_nolinesmodel extends ModelePDFPropales
 				$nexY = $tab_top + 7;
 
 				// Loop on each lines
-				if(1<0)
 				for ($i = 0; $i < $nblines; $i++) {
+
+					if(1<0) {
+
 					$curY = $nexY;
 					$pdf->SetFont('', '', $default_font_size - 1); // Into loop to work with multipage
 					$pdf->SetTextColor(0, 0, 0);
@@ -634,6 +636,8 @@ class pdf_nolinesmodel extends ModelePDFPropales
 					$total_excl_tax = pdf_getlinetotalexcltax($object, $i, $outputlangs, $hidedetails);
 					$pdf->SetXY($this->postotalht, $curY);
 					$pdf->MultiCell($this->page_largeur - $this->marge_droite - $this->postotalht, 3, $total_excl_tax, 0, 'R', 0);
+					
+					}
 
 					// Collecte des totaux par valeur de tva dans $this->tva["taux"]=total_tva
 					if (!empty($conf->multicurrency->enabled) && $object->multicurrency_tx != 1) {
@@ -696,14 +700,14 @@ class pdf_nolinesmodel extends ModelePDFPropales
 						$nexY = $posYAfterImage;
 					}
 
-					// Add line
-					if (!empty($conf->global->MAIN_PDF_DASH_BETWEEN_LINES) && $i < ($nblines - 1)) {
-						$pdf->setPage($pageposafter);
-						$pdf->SetLineStyle(array('dash'=>'1,1', 'color'=>array(80, 80, 80)));
-						//$pdf->SetDrawColor(190,190,200);
-						$pdf->line($this->marge_gauche, $nexY + 1, $this->page_largeur - $this->marge_droite, $nexY + 1);
-						$pdf->SetLineStyle(array('dash'=>0));
-					}
+					// // Add line
+					// if (!empty($conf->global->MAIN_PDF_DASH_BETWEEN_LINES) && $i < ($nblines - 1)) {
+					// 	$pdf->setPage($pageposafter);
+					// 	$pdf->SetLineStyle(array('dash'=>'1,1', 'color'=>array(80, 80, 80)));
+					// 	//$pdf->SetDrawColor(190,190,200);
+					// 	$pdf->line($this->marge_gauche, $nexY + 1, $this->page_largeur - $this->marge_droite, $nexY + 1);
+					// 	$pdf->SetLineStyle(array('dash'=>0));
+					// }
 
 					$nexY += 2; // Add space between lines
 
